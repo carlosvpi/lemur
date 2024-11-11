@@ -1,13 +1,12 @@
 import { GetChildren } from '../types' 
 
 export function historyChildren<T> (
-  getChildren: GetChildren<T>,
-  _root: T | undefined
+  getChildren: GetChildren<T>
 ): T[][] | GetChildren<T[]> {
-  const f = function (root: T[]): T[][]  {
+  return function (root: T[]): T[][]  {
     return getChildren(root[0]).map(node => [node, ...root])
   }
-  f.getRoot = (root: T): T[] => [root]
-  if (_root !== undefined) return f([_root])
-  return f
+}
+historyChildren.getRoot = function getRoot<T> (root: T) {
+  return [root]
 }
