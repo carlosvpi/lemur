@@ -1,0 +1,11 @@
+{
+  "name": "@carlosvpi/lemur",
+  "version": "0.0.0",
+  "description": "Tree-exploring node library",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/carlosvpi/lemur.git",
+  "author": "Carlos Vazquez <carlos.vazpi@gmail.com>",
+  "files": ["/dist"],
+  "license": "MIT"
+}
