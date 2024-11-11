@@ -1,6 +1,6 @@
 import { GetChildren } from '../types' 
 
-export function depthRun<T> (
+export function breadthRun<T> (
   getChildren: GetChildren<T>,
   _root: T | undefined
 ): Generator<T> | ((_: T) => Generator<T>) {
@@ -10,7 +10,7 @@ export function depthRun<T> (
     while (rest.length) {
       [node, ...rest] = rest
       yield node
-      rest.push(...getChildren(node))
+      rest = [...getChildren(node), ...rest]
     }
   }
   if (_root !== undefined) return f(_root)
