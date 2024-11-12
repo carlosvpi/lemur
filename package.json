@@ -11,7 +11,11 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "mocha 'test/**/*.ts'"
+    "test": "jest"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  }
 }
