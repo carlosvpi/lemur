@@ -1,4 +1,4 @@
-<img src="https://github.com/d3/d3/raw/main/docs/public/logo.svg" width="256" height="256">
+<img src="https://github.com/carlosvpi/lemur/tree/main/public/logo.svg" width="256" height="256">
 
 # lemur
 Tree-exploring node library
