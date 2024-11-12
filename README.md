@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<div><div align="center">
+  <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="213px" height="213px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g><path style="opacity:1" fill="#5a5143" d="M -0.5,108.5 C -0.5,106.833 -0.5,105.167 -0.5,103.5C 2.9333,59.469 24.6,27.969 64.5,9C 115.292,-8.26427 157.458,3.9024 191,45.5C 215.856,84.4362 216.523,123.77 193,163.5C 159.805,207.514 116.971,220.68 64.5,203C 24.6,184.031 2.9333,152.531 -0.5,108.5 Z"/></g>
@@ -44,12 +45,75 @@
 
 ![logo](https://github.com/user-attachments/assets/2d933c85-d32f-434b-acc5-9054f33aa3c1)
 
-# lemur
-Tree-exploring node library
+_When you are a lemur, everything is a tree_
 
+# Lemur
 
+The tree-exploring node library
+</div>
+</div>
 
-## Following this doc
+## Install
 
-https://www.tsmean.com/articles/how-to-write-a-typescript-library/
-https://docs.journeyapps.com/reference/build/extending-your-app-with-custom-code/app-packages/typescript-library-and-unit-tests
+```bash
+npm install @carlosvpi/lemur
+```
+
+or
+
+```bash
+yarn add @carlosvpi/lemur
+```
+
+## Philosophy
+
+If you represent your problem in the form of a tree, you no longer need to solve it. Lemur can solve it for you. This library can swing from node to node until finding what you consider a solution.
+
+This more declarative way of thinking about coding decouples a problem from the strategy to find a solution. If you describe a maze as a graph of adyacent coordinates, you can use lemur to perform an A* search to reach the solution. If, later, you arrive at a better heuristic, you can change your searching strategy while keeping all the hard work of defining the problem.
+
+## Documentation
+
+### breadthRun
+
+```typescript
+function breadthRun<T> (getChildren: GetChildren<T>): ((_: T) => Generator<T>)
+```
+
+`breadthRun(getChildren)(root)` returns a generator that yields a breadth run of a tree described by `getChildren` starting from the `root` node.
+
+### depthRun
+
+```typescript
+function depthRun<T> (getChildren: GetChildren<T>): ((_: T) => Generator<T>)
+```
+
+`depthRun(getChildren)(root)` returns a generator that yields a depth run of a tree described by `getChildren` starting from the `root` node.
+
+### run
+
+```typescript
+function run<T> (
+  combine: (_0: T[], _1: T[]) => T[],,
+  getChildren: GetChildren<T>
+): ((_: T) => Generator<T>)
+```
+
+`run(combine, getChildren)(root)` returns a generator that yields a specific run of a tree described by `getChildren` starting from the `root` node. The run is guided by the `combine` method, sugh that
+
+`combine(children, stack)` merges `children` and `stack` (both arrays of tree nodes), in such a way that the first elements are the next to be explored by `run(combine, getChildren)`, and the later ones the last ones.
+
+### historyChildren
+
+```typescript
+function historyChildren<T> (getChildren: GetChildren<T>): GetChildren<T[]>
+```
+
+`historyChildren(getChildren)` describes a tree isomorphic to the one described by `getChildren`, where each node contains the path (in the original tree) from the root to that node.
+
+#### historyChildren.getRoot
+
+```typescript
+function historyChildren.getRoot<T> (root: T): T[]
+```
+
+`historyChildren.getRoot(node)` produces a node in the category described by historyChildren: a path, in this case, of only one element, `node` assumed to be a root.
