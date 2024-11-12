@@ -1,6 +1,6 @@
 {
   "name": "@carlosvpi/lemur",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Tree-exploring node library",
   "main": "index.js",
   "types": "dist/types.d.ts",
