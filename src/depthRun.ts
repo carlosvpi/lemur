@@ -9,7 +9,7 @@ export function depthRun<T> (
     while (rest.length) {
       [node, ...rest] = rest
       yield node
-      rest.push(...getChildren(node))
+      rest = [...getChildren(node), ...rest]
     }
   }
 }

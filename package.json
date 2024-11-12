@@ -6,6 +6,7 @@
   "types": "dist/types.d.ts",
   "repository": "https://github.com/carlosvpi/lemur.git",
   "author": "Carlos Vazquez <carlos.vazpi@gmail.com>",
+  "sideEffects": false,
   "files": [
     "/dist"
   ],

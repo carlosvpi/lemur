@@ -9,7 +9,7 @@ export function breadthRun<T> (
     while (rest.length) {
       [node, ...rest] = rest
       yield node
-      rest = [...getChildren(node), ...rest]
+      rest.push(...getChildren(node))
     }
   }
 }
