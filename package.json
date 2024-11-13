@@ -1,6 +1,6 @@
 {
   "name": "@carlosvpi/lemur",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Tree-exploring node library",
   "main": "dist/index.js",
   "exports": {
@@ -9,48 +9,48 @@
       "import": "./dist/index.js"
     },
     "./breadthRun": {
-      "require": "./src/breadthRun",
-      "import": "./src/breadthRun"
+      "require": "./dist/src/breadthRun",
+      "import": "./dist/src/breadthRun"
     },
     "./collapse": {
-      "require": "./src/collapse",
-      "import": "./src/collapse"
+      "require": "./dist/src/collapse",
+      "import": "./dist/src/collapse"
     },
     "./depthRun": {
-      "require": "./src/depthRun",
-      "import": "./src/depthRun"
+      "require": "./dist/src/depthRun",
+      "import": "./dist/src/depthRun"
     },
     "./find": {
-      "require": "./src/find",
-      "import": "./src/find"
+      "require": "./dist/src/find",
+      "import": "./dist/src/find"
     },
     "./height": {
-      "require": "./src/height",
-      "import": "./src/height"
+      "require": "./dist/src/height",
+      "import": "./dist/src/height"
     },
     "./layerChildren": {
-      "require": "./src/layerChildren",
-      "import": "./src/layerChildren"
+      "require": "./dist/src/layerChildren",
+      "import": "./dist/src/layerChildren"
     },
     "./map": {
-      "require": "./src/map",
-      "import": "./src/map"
+      "require": "./dist/src/map",
+      "import": "./dist/src/map"
     },
     "./novelChildren": {
-      "require": "./src/novelChildren",
-      "import": "./src/novelChildren"
+      "require": "./dist/src/novelChildren",
+      "import": "./dist/src/novelChildren"
     },
     "./pathChildren": {
-      "require": "./src/pathChildren",
-      "import": "./src/pathChildren"
+      "require": "./dist/src/pathChildren",
+      "import": "./dist/src/pathChildren"
     },
     "./prune": {
-      "require": "./src/prune",
-      "import": "./src/prune"
+      "require": "./dist/src/prune",
+      "import": "./dist/src/prune"
     },
     "./run": {
-      "require": "./src/run",
-      "import": "./src/run"
+      "require": "./dist/src/run",
+      "import": "./dist/src/run"
     }
   },
   "types": "dist/types.d.ts",
