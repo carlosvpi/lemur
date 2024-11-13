@@ -1,8 +1,58 @@
 {
   "name": "@carlosvpi/lemur",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Tree-exploring node library",
   "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./breadthRun": {
+      "require": "./src/breadthRun",
+      "import": "./src/breadthRun"
+    },
+    "./collapse": {
+      "require": "./src/collapse",
+      "import": "./src/collapse"
+    },
+    "./depthRun": {
+      "require": "./src/depthRun",
+      "import": "./src/depthRun"
+    },
+    "./find": {
+      "require": "./src/find",
+      "import": "./src/find"
+    },
+    "./height": {
+      "require": "./src/height",
+      "import": "./src/height"
+    },
+    "./layerChildren": {
+      "require": "./src/layerChildren",
+      "import": "./src/layerChildren"
+    },
+    "./map": {
+      "require": "./src/map",
+      "import": "./src/map"
+    },
+    "./novelChildren": {
+      "require": "./src/novelChildren",
+      "import": "./src/novelChildren"
+    },
+    "./pathChildren": {
+      "require": "./src/pathChildren",
+      "import": "./src/pathChildren"
+    },
+    "./prune": {
+      "require": "./src/prune",
+      "import": "./src/prune"
+    },
+    "./run": {
+      "require": "./src/run",
+      "import": "./src/run"
+    }
+  },
   "types": "dist/types.d.ts",
   "repository": "https://github.com/carlosvpi/lemur.git",
   "author": "Carlos Vazquez <carlos.vazpi@gmail.com>",

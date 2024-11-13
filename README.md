@@ -8,7 +8,7 @@ _When you are a lemur, everything is a tree_
 
 The tree-exploring node library
 
-[philosophy](https://github.com/carlosvpi/lemur/blob/main/docs/philosophy.md) | [documentation](https://github.com/carlosvpi/lemur/blob/main/docs/documentation.md)
+[Philosophy](https://github.com/carlosvpi/lemur/blob/main/docs/philosophy.md) | [Documentation](https://github.com/carlosvpi/lemur/blob/main/docs/documentation.md)
 
 </div>
 

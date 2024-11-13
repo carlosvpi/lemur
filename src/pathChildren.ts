@@ -1,12 +1,15 @@
 import { GetChildren } from '../types' 
 
-export function historyChildren<T> (
+export function pathChildren<T> (
   getChildren: GetChildren<T>
 ): GetChildren<T[]> {
   return function (root: T[]): T[][]  {
     return getChildren(root[0]).map(node => [node, ...root])
   }
 }
-historyChildren.getRoot = function getRoot<T> (root: T) {
+pathChildren.wrap = function wrap<T> (root: T): T[] {
   return [root]
+}
+pathChildren.unwrap = function unwrap<T> ([root]: T[]): T {
+  return root
 }
