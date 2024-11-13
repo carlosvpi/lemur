@@ -9,48 +9,48 @@
       "import": "./dist/index.js"
     },
     "./breadthRun": {
-      "require": "./dist/src/breadthRun",
-      "import": "./dist/src/breadthRun"
+      "require": "./dist/src/breadthRun.js",
+      "import": "./dist/src/breadthRun.js"
     },
     "./collapse": {
-      "require": "./dist/src/collapse",
-      "import": "./dist/src/collapse"
+      "require": "./dist/src/collapse.js",
+      "import": "./dist/src/collapse.js"
     },
     "./depthRun": {
-      "require": "./dist/src/depthRun",
-      "import": "./dist/src/depthRun"
+      "require": "./dist/src/depthRun.js",
+      "import": "./dist/src/depthRun.js"
     },
     "./find": {
-      "require": "./dist/src/find",
-      "import": "./dist/src/find"
+      "require": "./dist/src/find.js",
+      "import": "./dist/src/find.js"
     },
     "./height": {
-      "require": "./dist/src/height",
-      "import": "./dist/src/height"
+      "require": "./dist/src/height.js",
+      "import": "./dist/src/height.js"
     },
     "./layerChildren": {
-      "require": "./dist/src/layerChildren",
-      "import": "./dist/src/layerChildren"
+      "require": "./dist/src/layerChildren.js",
+      "import": "./dist/src/layerChildren.js"
     },
     "./map": {
-      "require": "./dist/src/map",
-      "import": "./dist/src/map"
+      "require": "./dist/src/map.js",
+      "import": "./dist/src/map.js"
     },
     "./novelChildren": {
-      "require": "./dist/src/novelChildren",
-      "import": "./dist/src/novelChildren"
+      "require": "./dist/src/novelChildren.js",
+      "import": "./dist/src/novelChildren.js"
     },
     "./pathChildren": {
-      "require": "./dist/src/pathChildren",
-      "import": "./dist/src/pathChildren"
+      "require": "./dist/src/pathChildren.js",
+      "import": "./dist/src/pathChildren.js"
     },
     "./prune": {
-      "require": "./dist/src/prune",
-      "import": "./dist/src/prune"
+      "require": "./dist/src/prune.js",
+      "import": "./dist/src/prune.js"
     },
-    "./run": {
-      "require": "./dist/src/run",
-      "import": "./dist/src/run"
+    "./sortedRun": {
+      "require": "./dist/src/sortedRun.js",
+      "import": "./dist/src/sortedRun.js"
     }
   },
   "types": "dist/types.d.ts",
