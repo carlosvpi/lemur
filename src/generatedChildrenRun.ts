@@ -1,6 +1,6 @@
 import { GetChildren, GetLazyChildren } from '../types' 
 
-export function depthRun<T> (
+export function generatedChildrenRun<T> (
   getChildren: GetChildren<T> | GetLazyChildren<T>
 ): ((_: T) => Generator<T>) {
   return function* (root: T): Generator<T>  {
@@ -9,7 +9,7 @@ export function depthRun<T> (
     while (rest.length) {
       [node, ...rest] = rest
       yield node
-      rest = [...getChildren(node), ...rest]
+      rest.push(...getChildren(node))
     }
   }
 }

@@ -1,7 +1,7 @@
-import { GetChildren } from '../types' 
+import { GetChildren, GetLazyChildren } from '../types' 
 
 export function breadthRun<T> (
-  getChildren: GetChildren<T>
+  getChildren: GetChildren<T> | GetLazyChildren<T>
 ): ((_: T) => Generator<T>) {
   return function* (root: T): Generator<T>  {
     let rest = [root]

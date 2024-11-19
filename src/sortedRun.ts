@@ -8,7 +8,7 @@ export function sortedRun<T> (combine: (_0: T[], _1: T[]) => T[]) {
       while (rest.length) {
         [node, ...rest] = rest
         yield node
-        rest = combine(getChildren(node), rest)
+        rest = combine([...getChildren(node)], rest)
       }
     }
   }
