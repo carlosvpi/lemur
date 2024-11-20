@@ -9,7 +9,7 @@ describe('find', () => {
       expect(result).toEqual(20);
    });
   test('should not find a number greater than 20', () => {
-      const result = find<number, string>((x: number) => x > 20, () => 'Not found')(depthRun(finiteTree.getChildren)(0))
-      expect(result).toEqual('Not found');
+      const result = find<number>((x: number) => x > 20)(depthRun(finiteTree.getChildren)(0))
+      expect(result).toEqual(null);
    });
 });

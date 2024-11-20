@@ -1,8 +1,8 @@
 import { map } from './map' 
 
-export function clone<N, T> (f: (_: T) => T = x => x) {
+export function clone<T> (cloneNode: (_: T) => T = x => x) {
   return map<T, T>(
-    (node: T) => f(node),
-    (node: T) => f(node)
+    (node: T) => cloneNode(node),
+    (node: T) => cloneNode(node)
   )
 }
