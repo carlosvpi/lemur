@@ -1,12 +1,16 @@
 {
   "name": "@carlosvpi/lemur",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Tree-exploring node library",
   "main": "dist/index.js",
   "exports": {
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/index.js"
+    },
+    "./analyze": {
+      "require": "./dist/src/analyze.js",
+      "import": "./dist/src/analyze.js"
     },
     "./breadthRun": {
       "require": "./dist/src/breadthRun.js",
@@ -51,6 +55,10 @@
     "./sortedRun": {
       "require": "./dist/src/sortedRun.js",
       "import": "./dist/src/sortedRun.js"
+    },
+    "./synthesize": {
+      "require": "./dist/src/synthesize.js",
+      "import": "./dist/src/synthesize.js"
     }
   },
   "types": "dist/types.d.ts",
