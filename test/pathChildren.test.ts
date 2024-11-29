@@ -3,6 +3,11 @@ import { finiteTree, first } from './util';
 import { pathChildren } from '../src/pathChildren';
 
 describe('pathChildren', () => {
+   describe('#map', () => {
+      test('should map the function passed to the node of the path', () => {
+         expect(pathChildren.map((e:string) => e.toUpperCase())(['hello'])).toEqual('HELLO');
+      })
+   })
    describe('#wrap', () => {
       test('should format a node as to be a suitable root for pathChildren', () => {
          expect(pathChildren.wrap('element')).toEqual(['element']);

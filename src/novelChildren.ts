@@ -9,7 +9,7 @@ export function novelChildren<T> (
     if (visited.every(node => !equals(node, root))) {
       visited.push(root)
     }
-    return getChildren(root).filter(child => {
+    return [...getChildren(root)].filter(child => {
       if (visited.some(node => equals(node, child))){
         return false
       }

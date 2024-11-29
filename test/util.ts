@@ -46,3 +46,34 @@ export const getFactors = (n: number): number[] => {
   }
   return [n]
 }
+
+export const getEdges = (node: number) => {
+  switch (node) {
+    case 0:
+      return new Map([
+        [0, [0]],
+        [1, [1]]
+      ])
+    case 1:
+      return new Map([
+        [0, [2]],
+        [1, [3]]
+      ])
+    case 2:
+      return new Map([
+        [0, [4]],
+        [1, [0]]
+      ])
+    case 3:
+      return new Map([
+        [0, [1]],
+        [1, [2]]
+      ])
+    case 4:
+      return new Map([
+        [0, [3]],
+        [1, [4]]
+      ])
+  }
+  return new Map([]) as Map<number, number[]>
+}

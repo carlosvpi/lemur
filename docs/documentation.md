@@ -2,17 +2,45 @@
 
 ## Categories
 
-A tree of nodes of type `T` is described by a `getChildren: T => T[]` function. This signature (`(_: T) => T[]`) is called `GetChildren<T>`.
+A tree of nodes of type `T` is described by a `getChildren: T => T[]` function. This signature (`(_: T) => T[]`) is called `GetEagerChildren<T>`. A simmilar signature, `(_: T) => Generator<T>`, is called `GetLazyChildren<T>`, since it doesn't need to compute all children at the same time. The union of both types is called `GetChildren<T>`.
 
-A function of the type `GetChildren<T> => T => Generator<T>` is called a `run`. All `run` methods have the suffix "`Run`" in their names (eg. `breadthRun`). A `run` linearises a tree, providing its node one by one and on demand, following a variety of strategies (depth-first, breadth-first or sorted).
+A function of the type `GetChildren<T> => T => Generator<T>` is called a `run`. All `run` methods have the suffix "`Run`" in their names (eg. `breadthRun`). A `run` linearises a tree, providing its nodes one by one and on demand, following a variety of strategies (depth-first, breadth-first or sorted).
 
 A function of the type `GetChildren<T> => GetChildren<U>` is a `tree functor`. All tree functors have the suffix "`Children`" in their names (eg. `pathChildren`). Tree functors transform trees from one category to another (eg. if `tree` is a tree of numbers, `pathChildren(tree)` is the tree of paths on `tree`).
 
-Sometimes we apply a `tree functor` to operate with it, but then we want to obtain and find a particular node, but then we want the corresponding original node. This is why `tree functor` functions that transform the nodes of the tree themselves offer methods `wrap: T => U` and `unwrap: U => T`. In particular, one must call `treefunctor.wrap(originalRoot)` when passing a root to the transformed tree.
+Sometimes we apply a `tree functor` to operate with it and find a particular node, but then we want the corresponding original node. This is why `tree functor` functions that transform the nodes of the tree themselves offer methods `wrap: T => U` and `unwrap: U => T`. In particular, one must call `treefunctor.wrap(originalRoot)` when passing a root to the transformed tree.
 
 A function without suffix "`Children`" or "`Run`" is neither a `run` nor a `tree functor`.
 
+A method with signature `(_: T) => Map<E, T>` is called a `GetEdges<T, E>`, and provides the edges that depart from some node within some graph. The edges themselves are of type `E`, while the nodes are of type `T`.
+
 ## Functions
+
+### analyze
+
+```typescript
+export function analyze<N, E> (getEdges: (n: N) => Map<E | null, N[]>): (_: RunNode<N, E>) => N[]
+```
+
+If `getEdges` represents a graph with nodes of type `N` and edges of type `E | null`, then `analyze<N,E>(getEdges)` represents the analysis of some specific input in said graph (a sequence of edges). Its nodes are of type `{node: N, input: E[], index: number}` and its edges of type `E | null`. The `input` of each node is a sequence of edges, and `index` is the index within the input that is being analyzed.
+
+`analyze(getEdges)({ node, input, index })` accesses the successors of the given `node` where the edges that lead from it are annotated with the value `index[input]`. Once the successors have been obtained, `analyze...` wraps them as `RunNode<N, E>`, i.e., as `{ node, input, index: index + 1}`, so successive calls to `analyze...` over the found nodes continue traversing the graph.
+
+#### analyze.init
+
+```typescript 
+function analyze.init<N, E> (node: N, input: E[]): RunNode<N, E>
+```
+
+`analyze.init(node, input)` returns a valid node to apply `analyze(getEdges)` to. It wraps the node and input into an object together with `index: 0`.
+
+#### analyze.isFinish
+
+```typescript 
+function analyze.isFinish<N, E> (node: RunNode<N, E>): boolean
+```
+
+`analyze.isFinish({ node, input, index })` computes whether the analysis has concluded, which is when the index reaches the end of the input.
 
 ### breadthRun
 
@@ -127,6 +155,14 @@ function pathChildren<T> (getChildren: GetChildren<T>): GetChildren<T[]>
 
 `pathChildren(getChildren)` describes a tree isomorphic to the one described by `getChildren`, where each node contains the path (in the original tree) from the root to that node.
 
+#### pathChildren.map
+
+```typescript
+function pathChildren.map<T, U> (f: (_: T) => U): (_: T[]) => U
+```
+
+`pathChildren.map(f)(node)` is equivalent to `node => f(pathChildren.unwrap(node))`. It is a convenient method to be used in methods like `find`.
+
 #### pathChildren.wrap
 
 ```typescript
@@ -138,7 +174,7 @@ function pathChildren.wrap<T> (root: T): T[]
 #### pathChildren.unwrap
 
 ```typescript
-function pathChildren.unwrap<T> (root: T): T[]
+function pathChildren.unwrap<T> (root: T[]): T
 ```
 
 `pathChildren.unwrap(node)` produces a node in the category of the original tree: the first element (representing the last item in the path) of `node`.
@@ -163,3 +199,33 @@ function sortedRun<T> (
 `sortedRun(combine, getChildren)(root)` returns a generator that yields a specific sortedRun of a tree described by `getChildren` starting from the `root` node. The sortedRun is guided by the `combine` function, sugh that
 
 `combine(children, stack)` merges `children` and `stack` (both arrays of tree nodes), in such a way that the first elements are the next to be explored by `sortedRun(combine, getChildren)`, and the later ones the last ones.
+
+
+### synthesize
+
+```typescript
+export function synthesize<N, E> (
+  getEdges: (n: N) => Map<E | null, N[]>,
+  pick: (keys: E[], node: RunNode<N, E>) => E
+): (_: RunNode<N, E>) => N[]
+```
+
+If `getEdges` represents a graph with nodes of type `N` and edges of type `E | null`, then `synthesize<N,E>(getEdges)` represents the synthesis of a sequence of edges. Its nodes are of type `{node: N, input: E[], index: number}` and its edges of type `E | null`. The `input` of each node is a sequence of edges, and `index` is the index within the input that is being analyzed.
+
+`synthesize(getEdges, pick)({ node, input, index })` accesses the successors of the given `node` where the edges that lead from it are annotated with the output of `pick(edges, { node, input, index })` (where `edges` is the list of edge values that depart from `node`). Once the successors have been obtained, `synthesize...` wraps them as `RunNode<N, E>`, i.e., as `{ node, input, index: index + 1}`, so successive calls to `synthesize...` over the found nodes continue traversing the graph. `synthesize` 
+
+#### synthesize.init
+
+```typescript 
+function synthesize.init<N, E> (node: N, length: number): RunNode<N, E>
+```
+
+`synthesize.init(node, length)` returns a valid node to apply `synthesize(getEdges)` to. It wraps the node into an object together with `index: length` and `input: []`.
+
+#### synthesize.isFinish
+
+```typescript 
+function synthesize.isFinish<N, E> (node: RunNode<N, E>): boolean
+```
+
+`synthesize.isFinish({ node, input, index })` computes whether the analysis has concluded, which is when the index reaches zero (the whole input has been synthesized).
