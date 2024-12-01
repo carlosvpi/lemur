@@ -1,65 +1,50 @@
 {
   "name": "@carlosvpi/lemur",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Tree-exploring node library",
   "main": "dist/index.js",
   "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.js"
-    },
-    "./analyze": {
-      "require": "./dist/src/analyze.js",
-      "import": "./dist/src/analyze.js"
-    },
-    "./breadthRun": {
-      "require": "./dist/src/breadthRun.js",
-      "import": "./dist/src/breadthRun.js"
-    },
-    "./collapse": {
-      "require": "./dist/src/collapse.js",
-      "import": "./dist/src/collapse.js"
-    },
-    "./depthRun": {
-      "require": "./dist/src/depthRun.js",
-      "import": "./dist/src/depthRun.js"
-    },
-    "./find": {
-      "require": "./dist/src/find.js",
-      "import": "./dist/src/find.js"
-    },
-    "./height": {
-      "require": "./dist/src/height.js",
-      "import": "./dist/src/height.js"
-    },
-    "./layerChildren": {
-      "require": "./dist/src/layerChildren.js",
-      "import": "./dist/src/layerChildren.js"
-    },
-    "./map": {
-      "require": "./dist/src/map.js",
-      "import": "./dist/src/map.js"
-    },
-    "./novelChildren": {
-      "require": "./dist/src/novelChildren.js",
-      "import": "./dist/src/novelChildren.js"
-    },
-    "./pathChildren": {
-      "require": "./dist/src/pathChildren.js",
-      "import": "./dist/src/pathChildren.js"
-    },
-    "./prune": {
-      "require": "./dist/src/prune.js",
-      "import": "./dist/src/prune.js"
-    },
-    "./sortedRun": {
-      "require": "./dist/src/sortedRun.js",
-      "import": "./dist/src/sortedRun.js"
-    },
-    "./synthesize": {
-      "require": "./dist/src/synthesize.js",
-      "import": "./dist/src/synthesize.js"
-    }
+    ".": "./dist/index.js",
+    "./aStar": "./dist/src/aStar.js",
+    "./aStarLazy": "./dist/src/aStarLazy.js",
+    "./breadthRun": "./dist/src/breadthRun.js",
+    "./checkLeaf": "./dist/src/checkLeaf.js",
+    "./childrenFromInstance": "./dist/src/childrenFromInstance.js",
+    "./clone": "./dist/src/clone.js",
+    "./collapse": "./dist/src/collapse.js",
+    "./combineSortedGen": "./dist/src/combineSortedGen.js",
+    "./combineSortedLists": "./dist/src/combineSortedLists.js",
+    "./depthRun": "./dist/src/depthRun.js",
+    "./dijkstra": "./dist/src/dijkstra.js",
+    "./find": "./dist/src/find.js",
+    "./fromWithParentChildren": "./dist/src/fromWithParentChildren.js",
+    "./generatedChildrenRun": "./dist/src/generatedChildrenRun.js",
+    "./getGeneratedChildren": "./dist/src/getGeneratedChildren.js",
+    "./headGen": "./dist/src/headGen.js",
+    "./headWhileGen": "./dist/src/headWhileGen.js",
+    "./height": "./dist/src/height.js",
+    "./inorderRun": "./dist/src/inorderRun.js",
+    "./instantiate": "./dist/src/instantiate.js",
+    "./itemGen": "./dist/src/itemGen.js",
+    "./layerChildren": "./dist/src/layerChildren.js",
+    "./map": "./dist/src/map.js",
+    "./mapGen": "./dist/src/mapGen.js",
+    "./novelChildren": "./dist/src/novelChildren.js",
+    "./pathChildren": "./dist/src/pathChildren.js",
+    "./postorderRun": "./dist/src/postorderRun.js",
+    "./preorderRun": "./dist/src/preorderRun.js",
+    "./prune": "./dist/src/prune.js",
+    "./pushSorted": "./dist/src/pushSorted.js",
+    "./skipGen": "./dist/src/skipGen.js",
+    "./skipWhileGen": "./dist/src/skipWhileGen.js",
+    "./sortedLazyRun": "./dist/src/sortedLazyRun.js",
+    "./sortedRun": "./dist/src/sortedRun.js",
+    "./stackGen": "./dist/src/stackGen.js",
+    "./stackMachineAnalyze": "./dist/src/stackMachineAnalyze.js",
+    "./stateMachineAnalyze": "./dist/src/stateMachineAnalyze.js",
+    "./stateMachineSynthesize": "./dist/src/stateMachineSynthesize.js",
+    "./tag": "./dist/src/tag.js",
+    "./withParentChildren": "./dist/src/withParentChildren.js"
   },
   "types": "dist/types.d.ts",
   "repository": "https://github.com/carlosvpi/lemur.git",

@@ -1,16 +1,16 @@
 import {describe, expect, test} from '@jest/globals';
-import { getEdges } from './util';
-import { analyze } from '../src/analyze';
+import { getStateMachineEdges } from './util';
+import { stateMachineAnalyze } from '../src/stateMachineAnalyze';
 import { depthRun } from '../src/depthRun';
 import { pathChildren } from '../src/pathChildren';
 import { find } from '../src/find';
 
-describe('analyze', () => {
+describe('stateMachineAnalyze', () => {
    test('should traverse breadth first a tree', () => {
       const input = [1,0,1,0]
-      const getChildren = pathChildren(analyze(getEdges))
-      const run = depthRun(getChildren)(pathChildren.wrap(analyze.init(0,input)))
-      const result = find(pathChildren.map(analyze.isFinish<number, number>))(run)
+      const getChildren = pathChildren(stateMachineAnalyze(getStateMachineEdges))
+      const run = depthRun(getChildren)(pathChildren.wrap(stateMachineAnalyze.init(0,input)))
+      const result = find(pathChildren.map(stateMachineAnalyze.isFinish<number, number>))(run)
       expect(result).toEqual([
          {
            "node": 0,

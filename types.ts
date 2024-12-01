@@ -8,8 +8,16 @@ export interface WithParentNode<N> {
   node: N;
   tag: WithParentNode<N> | null;
 }
-export type RunNode<N, E> = {
+export type StateMachineNode<N, E> = {
   node: N,
   input: E[],
   index: number
 }
+export type StateMachineEdge<N, E> = Map<E | null, N[]>
+export type StackMachineNode<N, E, S> = {
+  node: N,
+  input: E[],
+  index: number,
+  stack: S[]
+}
+export type StackMachineEdge<N, E, S> = Map<E | null, Map<S | null, { node: N, push: S[] }[]>[]>

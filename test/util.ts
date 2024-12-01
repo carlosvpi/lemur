@@ -1,3 +1,5 @@
+import { StackMachineEdge } from '../types'
+
 export function first<T> (n: number = 1) {
   return (g: Generator<T>) => {
     const result: T[] = []
@@ -47,7 +49,7 @@ export const getFactors = (n: number): number[] => {
   return [n]
 }
 
-export const getEdges = (node: number) => {
+export const getStateMachineEdges = (node: number) => {
   switch (node) {
     case 0:
       return new Map([
@@ -76,4 +78,77 @@ export const getEdges = (node: number) => {
       ])
   }
   return new Map([]) as Map<number, number[]>
+}
+
+export const getStackMachineEdges = (node: string): StackMachineEdge<string, string, string> => {
+  /*
+  S = Nom Verb Nom
+  Nom = Art Adj Noun
+  Noun = "Cat" | "Dog"
+  Verb = "jumps over" | "plays with"
+  Adj = "cute" | \.
+  Art = "the" | "a"
+  */
+  switch (node) {
+    case "S":
+      return new Map([
+        [null, [new Map([
+          [null, [{ node: "Nom", push: ["Verb", "Nom"] }]]
+        ])]]
+      ])
+    case "Nom":
+      return new Map([
+        [null, [new Map([
+          [null, [{ node: "Art", push: ["Adj", "Noun"] }]]
+        ])]]
+      ])
+    case "Noun":
+      return new Map([
+        ["cat", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]],
+        ["dog", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]]
+      ])
+    case "Verb":
+      return new Map([
+        ["jumps-over", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]],
+        ["plays-with", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]]
+      ])
+    case "Adj":
+      return new Map([
+        ["cute", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]],
+        [null, [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]]
+      ])
+    case "Art":
+      return new Map([
+        ["the", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]],
+        ["a", [new Map([
+          [null, [{ node: "End", push: [] }]]
+        ])]]
+      ])
+    case "End":
+      return new Map([[null, [
+        new Map([
+          ["Noun", [{ node: "Noun", push: [] }]],
+          ["Adj", [{ node: "Adj", push: [] }]],
+          ["Art", [{ node: "Art", push: [] }]],
+          ["Nom", [{ node: "Nom", push: [] }]],
+          ["Verb", [{ node: "Verb", push: [] }]],
+          ["*", [{ node: "End", push: [] }]],
+        ])
+      ]]])
+  }
+  return new Map([]) as StackMachineEdge<string, string, string>
 }

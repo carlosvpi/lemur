@@ -1,15 +1,15 @@
 import {describe, expect, test} from '@jest/globals';
-import { getEdges } from './util';
-import { synthesize } from '../src/synthesize';
+import { getStateMachineEdges } from './util';
+import { stateMachineSynthesize } from '../src/stateMachineSynthesize';
 import { depthRun } from '../src/depthRun';
 import { pathChildren } from '../src/pathChildren';
 import { find } from '../src/find';
 
-describe('synthesize', () => {
+describe('stateMachineSynthesize', () => {
    test('should traverse breadth first a tree', () => {
-      const getChildren = pathChildren(synthesize(getEdges, (keys: number[]) => keys[keys.length - 1]))
-      const run = depthRun(getChildren)(pathChildren.wrap(synthesize.init(0, 4)))
-      const result = find(pathChildren.map(synthesize.isFinish<number, number>))(run)
+      const getChildren = pathChildren(stateMachineSynthesize(getStateMachineEdges, (keys: number[]) => keys[keys.length - 1]))
+      const run = depthRun(getChildren)(pathChildren.wrap(stateMachineSynthesize.init(0, 4)))
+      const result = find(pathChildren.map(stateMachineSynthesize.isFinish<number, number>))(run)
       expect(result).toEqual([
         {
           "index": 0,
