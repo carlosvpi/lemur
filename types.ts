@@ -13,12 +13,6 @@ export type StateMachineNode<N, E> = {
   input: E[],
   index: number
 }
-export type StateMachineEdge<N, E> = Map<E | null, N[]>
-export type StackMachineNode<N, E, S> = {
-  node: N,
-  input: E[],
-  index: number,
-  stack: S[]
-}
+export type StateMachineEdge<N, E> = (_0: N, _1: E) => N[]
 export type StackChild<N, S> = { node: N, stack: S[] }
-export type StackMachineEdge<N, E, S> = Map<E | null, Map<S | null, StackChild<N, S>[]>[]>
+export type StackMachineEdge<N, E, S> = (_0: N, _1: E, _2: S) => StackChild<N, S>[]

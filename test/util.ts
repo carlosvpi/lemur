@@ -150,5 +150,5 @@ export const getStackMachineEdges = (node: string): StackMachineEdge<string, str
   //       ])
   //     ]]])
   // }
-  return new Map([]) as StackMachineEdge<string, string, string>
+  return () => []//new Map([]) as StackMachineEdge<string, string, string>
 }

@@ -1,10 +1,10 @@
 import { StateMachineEdge } from "../types"
 
-export function stateMachineChildren<N, E> (getEdges: (n: N) => StateMachineEdge<N, E>) {
-  function getChildren (root: N, input: E): N[] {
-    return getEdges(root).get(input)
+export function stateMachineChildren<N, E> (getEdges: StateMachineEdge<N, E>) {
+  return function (root: N, input: E): N[] {
+    return getEdges(root, input)
   }
-  getChildren.isFinish = function(_: N, input: E | undefined) {
-    return input === undefined
-  }
+}
+stateMachineChildren.isFinish = function<N, E> (_: N, input: E | undefined) {
+  return input === undefined
 }
