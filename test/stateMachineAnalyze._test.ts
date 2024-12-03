@@ -1,6 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 import { getStateMachineEdges } from './util';
-import { stateMachineAnalyze } from '../src/stateMachineAnalyze';
+import { stateMachineAnalyze } from '../src/_stateMachineAnalyze';
 import { depthRun } from '../src/depthRun';
 import { pathChildren } from '../src/pathChildren';
 import { find } from '../src/find';

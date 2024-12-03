@@ -89,66 +89,66 @@ export const getStackMachineEdges = (node: string): StackMachineEdge<string, str
   Adj = "cute" | \.
   Art = "the" | "a"
   */
-  switch (node) {
-    case "S":
-      return new Map([
-        [null, [new Map([
-          [null, [{ node: "Nom", push: ["Verb", "Nom"] }]]
-        ])]]
-      ])
-    case "Nom":
-      return new Map([
-        [null, [new Map([
-          [null, [{ node: "Art", push: ["Adj", "Noun"] }]]
-        ])]]
-      ])
-    case "Noun":
-      return new Map([
-        ["cat", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]],
-        ["dog", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]]
-      ])
-    case "Verb":
-      return new Map([
-        ["jumps-over", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]],
-        ["plays-with", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]]
-      ])
-    case "Adj":
-      return new Map([
-        ["cute", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]],
-        [null, [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]]
-      ])
-    case "Art":
-      return new Map([
-        ["the", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]],
-        ["a", [new Map([
-          [null, [{ node: "End", push: [] }]]
-        ])]]
-      ])
-    case "End":
-      return new Map([[null, [
-        new Map([
-          ["Noun", [{ node: "Noun", push: [] }]],
-          ["Adj", [{ node: "Adj", push: [] }]],
-          ["Art", [{ node: "Art", push: [] }]],
-          ["Nom", [{ node: "Nom", push: [] }]],
-          ["Verb", [{ node: "Verb", push: [] }]],
-          ["*", [{ node: "End", push: [] }]],
-        ])
-      ]]])
-  }
+  // switch (node) {
+  //   case "S":
+  //     return new Map([
+  //       [null, [new Map([
+  //         [null, [{ node: "Nom", push: ["Verb", "Nom"] }]]
+  //       ])]]
+  //     ])
+  //   case "Nom":
+  //     return new Map([
+  //       [null, [new Map([
+  //         [null, [{ node: "Art", push: ["Adj", "Noun"] }]]
+  //       ])]]
+  //     ])
+  //   case "Noun":
+  //     return new Map([
+  //       ["cat", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]],
+  //       ["dog", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]]
+  //     ])
+  //   case "Verb":
+  //     return new Map([
+  //       ["jumps-over", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]],
+  //       ["plays-with", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]]
+  //     ])
+  //   case "Adj":
+  //     return new Map([
+  //       ["cute", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]],
+  //       [null, [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]]
+  //     ])
+  //   case "Art":
+  //     return new Map([
+  //       ["the", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]],
+  //       ["a", [new Map([
+  //         [null, [{ node: "End", push: [] }]]
+  //       ])]]
+  //     ])
+  //   case "End":
+  //     return new Map([[null, [
+  //       new Map([
+  //         ["Noun", [{ node: "Noun", push: [] }]],
+  //         ["Adj", [{ node: "Adj", push: [] }]],
+  //         ["Art", [{ node: "Art", push: [] }]],
+  //         ["Nom", [{ node: "Nom", push: [] }]],
+  //         ["Verb", [{ node: "Verb", push: [] }]],
+  //         ["*", [{ node: "End", push: [] }]],
+  //       ])
+  //     ]]])
+  // }
   return new Map([]) as StackMachineEdge<string, string, string>
 }

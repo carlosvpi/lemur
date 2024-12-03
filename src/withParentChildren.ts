@@ -1,8 +1,8 @@
 import { GetChildren, WithParentNode } from '../types'
 import { tag } from './tag' 
 
-export function withParentChildren<N>(getChildren: GetChildren<N>) {
-  const t = tag<N, WithParentNode<N> | null>((_0: N, _1: number, parent: WithParentNode<N> | null) => parent)
+export function withParentChildren<N, I>(getChildren: GetChildren<N, I>) {
+  const t = tag<N, WithParentNode<N> | null, I>((_0: N, _1: number, parent: WithParentNode<N> | null) => parent)
   return t(getChildren)
 }
 

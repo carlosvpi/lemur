@@ -1,9 +1,9 @@
 import { GetChildren } from '../types' 
 
-export function prune<T> (p: (_:T) => boolean) {
-  return function (getChildren: GetChildren<T>): GetChildren<T> {
-    return function (root: T): T[]  {
-      return [...getChildren(root)].filter(p)
+export function prune<T, I> (p: (_:T) => boolean) {
+  return function (getChildren: GetChildren<T, I>): GetChildren<T, I> {
+    return function (root: T, input: I): T[]  {
+      return [...getChildren(root, input)].filter(p)
     }
   }
 }

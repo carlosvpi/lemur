@@ -1,6 +1,6 @@
-export type GetEagerChildren<T> = (_: T) => T[]
-export type GetLazyChildren<T> = (_: T) => Generator<T>
-export type GetChildren<T> = GetEagerChildren<T> | GetLazyChildren<T>
+export type GetEagerChildren<T, I> = (_1: T, _2?: I) => T[]
+export type GetLazyChildren<T, I> = (_1: T, _2?: I) => Generator<T>
+export type GetChildren<T, I> = GetEagerChildren<T, I> | GetLazyChildren<T, I>
 export type GetBinaryChildren<T> = (_: T) => [T | null, T | null]
 export type NestedArray<T> = T | NestedArray<T>[]
 export type TaggedNode<N, T> = { node: N, tag: T}
@@ -20,4 +20,5 @@ export type StackMachineNode<N, E, S> = {
   index: number,
   stack: S[]
 }
-export type StackMachineEdge<N, E, S> = Map<E | null, Map<S | null, { node: N, push: S[] }[]>[]>
+export type StackChild<N, S> = { node: N, stack: S[] }
+export type StackMachineEdge<N, E, S> = Map<E | null, Map<S | null, StackChild<N, S>[]>[]>

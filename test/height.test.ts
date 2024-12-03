@@ -4,7 +4,7 @@ import { height } from '../src/height';
 
 describe('height', () => {
   test('should traverse breadth first a tree', () => {
-      const result = height(finiteTree.getChildren)(0)
-      expect(result).toEqual(9);
-   });
+    const result = height(finiteTree.getChildren)(0)
+    expect(result).toEqual(9);
+  });
 });

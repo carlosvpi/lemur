@@ -18,3 +18,21 @@ stateMachineAnalyze.init = function init<N, E> (node: N, input: E[]): StateMachi
 stateMachineAnalyze.isFinish = function isFinish<N, E> (node: StateMachineNode<N, E>) {
   return node.index === node.input.length
 }
+
+function* f(): Generator<number, void, string> {
+  const x = yield 1
+  console.log(yield 2)
+}
+
+export function stateMachineRun<N, E> (getEdges: (n: N) => StateMachineEdge<N, E>) {
+  return function* (root: N): Generator<N, void, E>  {
+    let rest = [root]
+    let node
+    while (rest.length) {
+      [node, ...rest] = rest
+      const input = yield node
+      const neightbors = getEdges(node).get(input) ?? []
+      rest.push(...neightbors)
+    }
+  }
+}

@@ -40,11 +40,14 @@
     "./sortedLazyRun": "./dist/src/sortedLazyRun.js",
     "./sortedRun": "./dist/src/sortedRun.js",
     "./stackGen": "./dist/src/stackGen.js",
-    "./stackMachineAnalyze": "./dist/src/stackMachineAnalyze.js",
-    "./stateMachineAnalyze": "./dist/src/stateMachineAnalyze.js",
-    "./stateMachineSynthesize": "./dist/src/stateMachineSynthesize.js",
+    "./stackMachineChildren": "./dist/src/stackMachineChildren.js",
+    "./stackMachineDepthRun": "./dist/src/stackMachineDepthRun.js",
+    "./stateMachineChildren": "./dist/src/stateMachineChildren.js",
     "./tag": "./dist/src/tag.js",
-    "./withParentChildren": "./dist/src/withParentChildren.js"
+    "./withParentChildren": "./dist/src/withParentChildren.js",
+    "./_stackMachineAnalyze": "./dist/src/_stackMachineAnalyze.js",
+    "./_stateMachineAnalyze": "./dist/src/_stateMachineAnalyze.js",
+    "./_stateMachineSynthesize": "./dist/src/_stateMachineSynthesize.js"
   },
   "types": "dist/types.d.ts",
   "repository": "https://github.com/carlosvpi/lemur.git",

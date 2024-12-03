@@ -1,10 +1,10 @@
 import { GetChildren, GetLazyChildren } from '../types' 
 
-export function layerChildren<T> (
-  getChildren: GetChildren<T> | GetLazyChildren<T>
-): GetChildren<T[]> {
-  return function (root: T[]): T[][]  {
-    const children = root.reduce((acc, node) => [...acc, ...getChildren(node)], [])
+export function layerChildren<T, I> (
+  getChildren: GetChildren<T, I>
+): GetChildren<T[], I> {
+  return function (root: T[], input: I): T[][]  {
+    const children = root.reduce((acc, node) => [...acc, ...getChildren(node, input)], [])
     if (children.length === 0) return []
     return [children]
   }

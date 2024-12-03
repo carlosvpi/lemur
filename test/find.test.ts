@@ -5,11 +5,11 @@ import { find } from '../src/find';
 
 describe('find', () => {
   test('should find a number greater than 19', () => {
-      const result = find((x: number) => x > 19)(depthRun(finiteTree.getChildren)(0))
-      expect(result).toEqual(20);
-   });
+    const result = find((x: number) => x > 19)(depthRun(finiteTree.getChildren)(0))
+    expect(result).toEqual(20);
+  });
   test('should not find a number greater than 20', () => {
-      const result = find<number>((x: number) => x > 20)(depthRun(finiteTree.getChildren)(0))
-      expect(result).toEqual(null);
-   });
+    const result = find<number>((x: number) => x > 20)(depthRun(finiteTree.getChildren)(0))
+    expect(result).toEqual(null);
+  });
 });

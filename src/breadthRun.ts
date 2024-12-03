@@ -1,15 +1,15 @@
-import { GetChildren, GetLazyChildren } from '../types' 
+import { GetChildren } from '../types' 
 
-export function breadthRun<T> (
-  getChildren: GetChildren<T> | GetLazyChildren<T>
-): ((_: T) => Generator<T>) {
+export function breadthRun<T, I> (
+  getChildren: GetChildren<T, I>
+): ((_: T) => Generator<T, void, I>) {
   return function* (root: T): Generator<T>  {
     let rest = [root]
-    let node
+    let node: T
     while (rest.length) {
       [node, ...rest] = rest
-      yield node
-      rest.push(...getChildren(node))
+      const input = yield node
+      rest.push(...getChildren(node, input))
     }
   }
 }

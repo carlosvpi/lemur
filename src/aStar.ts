@@ -3,11 +3,11 @@ import { find } from "./find"
 import { sortedRun } from "./sortedRun"
 import { combineSortedLists } from './combineSortedLists'
 
-export function aStar<T> (p: (_: T) => boolean, getWeight: (_: T) => number) {
+export function aStar<T, I> (p: (_: T) => boolean, getWeight: (_: T) => number) {
   const combine = combineSortedLists(getWeight)
-  return function(getChildren: GetChildren<T>){
+  return function(getChildren: GetChildren<T, I>){
     return function (root: T) {
-      return find(p)(sortedRun<T>(combine)(getChildren)(root))
+      return find(p)(sortedRun<T, I>(combine)(getChildren)(root))
     }
   }
 }

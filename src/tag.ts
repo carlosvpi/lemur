@@ -1,8 +1,8 @@
 import { map } from './map' 
 import { TaggedNode } from '../types'
 
-export function tag<N, T> (f: (_0: N, _1: number, _2: TaggedNode<N, T>) => T) {
-  return map<N, TaggedNode<N, T>>(
+export function tag<N, T, I> (f: (_0: N, _1: number, _2: TaggedNode<N, T>) => T) {
+  return map<N, TaggedNode<N, T>, I>(
     (node: N, index: number, parent: TaggedNode<N, T>) => ({ node, tag: f(node, index, parent)}),
     ({ node }) => node
   )

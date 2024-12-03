@@ -1,4 +1,4 @@
-function* stack<T> (combine: (acc: T[], item: T) => T[], initialNodes: T[]) {
+export function* stackGen<T> (combine: (acc: T[], item: T) => T[], initialNodes: T[]) {
   let _stack = [...initialNodes]
   let node
   while (_stack.length) {

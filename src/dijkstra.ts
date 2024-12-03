@@ -1,7 +1,7 @@
 import { GetChildren } from "../types"
 import { pushSorted } from './pushSorted'
 
-export function dijkstra<T> (getChildren: GetChildren<T>, getWeight: (_0: T, _1: T) => number) {
+export function dijkstra<T, I> (getChildren: GetChildren<T, I>, getWeight: (_0: T, _1: T) => number) {
   const distance = new Map<T, number>([])
   const parent = new Map<T, T>([])
   const visited = new Set<T>([])
